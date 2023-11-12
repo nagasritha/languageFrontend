@@ -1,0 +1,60 @@
+.form{
+    display:flex;
+    flex-direction:column;
+    background-color:white;
+    padding:20px 40px;
+}.form p{
+    font-weight: 600;
+}
+.registration{
+    background-color:aqua;
+    color:black;
+    align-items:center;
+    justify-content:center;
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+    background-size: cover;
+}
+.input{
+    padding:10px;
+    font-size:20px;
+    border-radius:3px;
+    width:100%;
+}
+.label{
+    font-size:20px;
+    margin-top:10px;
+}
+select{
+    padding:10px;
+    font-size:20px;
+    border-radius:3px;
+    width:100%;
+}
+.form button{
+    margin-top:20px;
+    
+    outline: none;
+    width:100px;
+    height:40px;
+    border-radius: 10px;
+    border-width:0px;
+    background-color:blue;
+    font-size:20px;
+    color:white;
+}
+.align{
+    text-align:center;
+}
+.align p{
+    font-size:20px;
+    font-weight: bold;;
+}
+.registration h1{
+   color:blue;
+   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   font-style:italic;
+   margin-bottom:20px;
+
+}

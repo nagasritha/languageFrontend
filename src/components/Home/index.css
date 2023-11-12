@@ -1,0 +1,22 @@
+.exercise{
+    background-color:aliceblue;
+    box-shadow:2px 10px 2px 2px #cafad7;
+    border-radius: 10px;
+    padding:15px;
+    display:flex;
+    justify-content: space-between;
+    margin:30px;
+    align-items:Center;
+}
+button{
+    height:30px;
+}
+.body{
+    padding-top:10vh;
+    padding-left:10px;
+}
+.typing-animation{
+    color:darkblue;
+    font-family:'Bree serif';
+    padding: 20px;
+}

@@ -1,0 +1,20 @@
+.card{
+    list-style-type:none;
+    background-color:burlywood;
+    display:flex;
+    padding:10px;
+    margin:10px;
+
+}
+.profile{
+   border-radius:35px;
+   width:35px;
+   height:35px;
+   padding:10px;
+   display:flex;
+   align-items:center;
+   justify-content: center;
+}
+.card div{
+   margin-left:30px;
+}
