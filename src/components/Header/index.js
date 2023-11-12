@@ -1,8 +1,7 @@
 import {Component} from 'react'
 import {AiOutlineProfile} from 'react-icons/ai'
 import Popup from 'reactjs-popup'
-import {PiArticleMediumFill} from 'react-icons/pi'
-import {FcAbout} from 'react-icons/fc'
+import {MdLeaderboard} from 'react-icons/md'
 import {BiLogIn} from 'react-icons/bi'
 import {FiUsers} from 'react-icons/fi'
 import {Link,Navigate} from 'react-router-dom'
@@ -15,6 +14,10 @@ class Header extends Component{
       email:'',
       location:'',
       score:0,
+      leaderusername:'',
+      leaderlocation:'',
+      leaderemail:'',
+      leaderscore:0,
     }
   
     removeCookie=()=>{
@@ -24,6 +27,7 @@ class Header extends Component{
    
     componentDidMount(){
       this.getProfile()
+      this.getLeader()
     }
 
     getProfile=async ()=>{
@@ -43,15 +47,26 @@ class Header extends Component{
         location:jsonData.location,
         score:jsonData.score})
       }
+
+    getLeader=async()=>{
+      const url='https://backrnd.onrender.com/leader'
+      const details=await fetch(url)
+      const data=await details.json()
+      console.log(data)
+      this.setState({leaderusername:data.username,
+      leaderemail:data.email,
+    leaderlocation:data.location,
+  leaderscore:data.score})
+    }  
     
     render(){
-    const {username,email,location,score}=this.state
-console.log(username,email,location,score)
+    const {username,email,location,score,leaderemail,leaderusername,leaderlocation,leaderscore}=this.state
+    console.log(username,email,location,score)
     return (
         <nav className='header'>
           <Link to='/home'><img src='https://res.cloudinary.com/dkredoejm/image/upload/v1699748965/logo-1_ys3ya5.png' alt='logo' className='logo'/></Link>
           <div className='flex display-lg'>
-            <Popup trigger={<p className='link'>Profile</p>}>
+            <Popup trigger={<p className='link' onClick={this.getProfile}>Profile</p>}>
               {close=>{
                 return <div>
                   <div className='card'>
@@ -67,12 +82,23 @@ console.log(username,email,location,score)
                 </div>
               }}
             </Popup>
-            <Link to='/article' className='link'>
-              <p>Articles</p>
-            </Link>
-            <Link to='/about'  className='link'>
-               <p>About Us</p>
-            </Link>
+            <Popup trigger={<p className='link' onClick={this.getLeader}>LeaderBoard</p>}>
+              {close=>{
+                return <div>
+                  <div className='card'>
+            <h1 className='profile' style={{"backgroundColor":'blue'}}>{leaderusername[0]}</h1>
+            <div>
+            <h2>{leaderusername}</h2>
+            <p><b>Email: </b>{leaderemail}</p>
+            <p><b>Location:</b>{leaderlocation}</p>
+            <p><b>Score: </b>{leaderscore}</p>
+            </div>
+        </div>
+
+                </div>
+              }}
+            </Popup>
+            
             <Link to='/users'  className='link'>
                <p>Users</p>
             </Link>
@@ -81,7 +107,7 @@ console.log(username,email,location,score)
             </Link>
           </div>
           <div className='flex display-sm'>
-          <Popup trigger={<p className='link'><AiOutlineProfile/></p>}>
+          <Popup trigger={<p className='link' style={{"backgroundColor":"blue"}}><AiOutlineProfile/></p>}>
               {close=>{
                 return <div>
                   <div className='card'>
@@ -97,12 +123,22 @@ console.log(username,email,location,score)
                 </div>
               }}
             </Popup>
-            <Link to='/article' className='link'>
-              <p><PiArticleMediumFill/></p>
-            </Link>
-            <Link to='/about'  className='link'>
-               <p><FcAbout/></p>
-            </Link>
+            <Popup trigger={<p className='link' onClick={this.getLeader}><MdLeaderboard/></p>}>
+              {close=>{
+                return <div>
+                  <div className='card'>
+            <h1 className='profile' style={{"backgroundColor":'blue'}}>{leaderusername[0]}</h1>
+            <div>
+            <h2>{leaderusername}</h2>
+            <p><b>Email: </b>{leaderemail}</p>
+            <p><b>Location:</b>{leaderlocation}</p>
+            <p><b>Score: </b>{leaderscore}</p>
+            </div>
+        </div>
+
+                </div>
+              }}
+            </Popup>
             <Link to='/users'  className='link'>
                <p><FiUsers/></p>
             </Link>

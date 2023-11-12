@@ -35,41 +35,33 @@ class Register extends Component{
 
   submitForm=async (event)=>{
    event.preventDefault()
-    const {email,password,username,location,gender}=this.state
-    if(email!=="" || password!=="" || username!=="" || location!==""){
-      const userDetails={
-          "username":username,
-          "email":email,
-          "password":password,
-          "gender":gender,
-          "location":location
-      }
-      console.log(JSON.stringify(userDetails))
-      const options={
-          method:'POST',
-          headers:{
-              'Content-Type': 'application/json',
-          },
-          body:JSON.stringify(userDetails)
-      }
-      const url='https://backrnd.onrender.com/register'
-      const result=await fetch(url,options)
-      if(result.status===200){
-        return this.setState({'success':true,'message':'user registerd', email:'',
-        username:'',
-        gender:'Male',
-        password:'',
-        location:'',
-       })
-      }
-      return this.setState({'message':'user already exists'})  
-    }
-     
-    }  
+   const {username,location,gender,password,email}=this.state
+   if(username!=="" && location!=='' && gender!=='' && password!=='' && email!==''){
+   const userDetails={
+    "username":username,
+    "location":location,
+    "gender":gender,
+    "password":password,
+    "email":email
+   }
+   const url='https://backrnd.onrender.com/register'
+   const options={
+    method:`POST`,
+    headers:{
+      "Content-Type": "application/json"
+    },
+    body:JSON.stringify(userDetails)
+   }
+   const putData=await fetch(url,options)
+   const response=await putData.json()
+   console.log(response)
+    this.setState({message:response.message})
 
+    }  
+  }
 
   render() {
-     const {name,username,loction,gender,password,success,message}=this.state
+     const {email,username,loction,gender,password,message}=this.state
      const token=Cookies.get("jwt_token")
      if(token!==undefined){
        return <Navigate replace to='/home'/>
@@ -79,8 +71,8 @@ class Register extends Component{
           <h1>Register Here</h1>  
           <form onSubmit={this.submitForm} className='form'>
            <label className='label' htmlFor='name'>EMAIL</label>
-           <input placeholder='Enter your email address' className='input' id='name' type='text' onChange={this.updateName} value={name}/>
-           {name==="" && <p style={{'color':'red'}}>*Required</p>}
+           <input placeholder='Enter your email address' className='input' id='name' type='text' onChange={this.updateName} value={email}/>
+           {email==="" && <p style={{'color':'red'}}>*Required</p>}
            <label className='label' htmlFor='user'>USERNAME</label>
            <input className='input' autoComplete='off' placeholder='Enter Username' id='user' type='text' onChange={this.updateUserName} value={username}/>
            {username==='' && <p style={{'color':'red'}}>*Required</p>}
@@ -97,14 +89,9 @@ class Register extends Component{
            {password==='' && <p style={{'color':'red'}}>*Required</p>}
            <div className='align'>
            <button type='Submit'>submit</button>
-           {success ? <div>
-                        <p style={{'color':'green'}}>{message} <span><Link to='/login'>Login</Link> now</span></p>
-                      </div>
-                      :
-                      <p style={{'color':'red'}}>{message}</p>
-                      }
+           <p>{message}</p>
            </div> 
-           <p>If you have already register please <span><Link to='/login'>Login</Link></span> hear</p>
+           <p>If you have registerd please <span><Link to='/login'>Login</Link></span> hear</p>
           </form>
         </div>
      )

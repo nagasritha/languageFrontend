@@ -5,17 +5,19 @@ import Home from './components/Home'
 import ExerciseEnglish from './components/ExerciseEnglish'
 import UserDetails from './components/UserDetails'
 import ExerciseTelugu from './components/ExerciseTelugu'
+import NotFound from './components/NotFound'
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-      <Route path='/' element={<Register/>}/>
-      <Route path='/login' element={<Login/>}/>
-      <Route path="/home" element={<Home/>}/>
-      <Route path='/exercise/english' element={<ExerciseEnglish/>}/>
-      <Route path='exercise/telugu' element={<ExerciseTelugu/>}/>
-      <Route path='/users' element={<UserDetails/>}/>
+      <Route exact path='/' element={<Register/>}/>
+      <Route exact path='/login' element={<Login/>}/>
+      <Route exact path="/home" element={<Home/>}/>
+      <Route exact path='/exercise/english' element={<ExerciseEnglish/>}/>
+      <Route exact path='exercise/telugu' element={<ExerciseTelugu/>}/>
+      <Route exact path='/users' element={<UserDetails/>}/>
+      <Route element={<NotFound/>}/>
       </Routes>
     </BrowserRouter>
   )
