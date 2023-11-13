@@ -5,6 +5,7 @@ import Home from './components/Home'
 import ExerciseEnglish from './components/ExerciseEnglish'
 import UserDetails from './components/UserDetails'
 import ExerciseTelugu from './components/ExerciseTelugu'
+import AddQuestions from './components/AddQuestions'
 import NotFound from './components/NotFound'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <Route exact path='/exercise/english' element={<ExerciseEnglish/>}/>
       <Route exact path='exercise/telugu' element={<ExerciseTelugu/>}/>
       <Route exact path='/users' element={<UserDetails/>}/>
+      <Route exact path='/add-questions' element={<AddQuestions/>}/>
       <Route element={<NotFound/>}/>
       </Routes>
     </BrowserRouter>

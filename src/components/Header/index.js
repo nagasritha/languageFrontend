@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {AiOutlineProfile} from 'react-icons/ai'
+import {AiOutlineProfile,AiFillFileAdd} from 'react-icons/ai'
 import Popup from 'reactjs-popup'
 import {MdLeaderboard} from 'react-icons/md'
 import {BiLogIn} from 'react-icons/bi'
@@ -98,7 +98,9 @@ class Header extends Component{
                 </div>
               }}
             </Popup>
-            
+            <Link to="/add-questions" className='link'>
+              <p>Add data</p>
+            </Link>
             <Link to='/users'  className='link'>
                <p>Users</p>
             </Link>
@@ -141,6 +143,9 @@ class Header extends Component{
             </Popup>
             <Link to='/users'  className='link'>
                <p><FiUsers/></p>
+            </Link>
+            <Link to='/add-questions' className='link'>
+              <p><AiFillFileAdd/></p>
             </Link>
             <Link to='/' onClick={this.removeCookie}>
                <p><BiLogIn/></p>
